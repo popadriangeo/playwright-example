@@ -126,4 +126,43 @@ test('Quick Leaf privacy policy verification ', async ({ page }) => {
 
 
 ### Continuous Integration
-Our tests need to be executed in a CI environment
+Our tests need to be executed in a CI environment, therefore we need to configure this part.
+
+Lets examine the `.github\workflows\playwright.yml` file. It should look like this.
+
+```yml
+name: Playwright Tests
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      run: npx playwright test
+    - uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 1
+```
+
+Finally let's push our code to Github, and lets check the Actions Tab.
+Our code will be picked up by a github runner and will be executed in the cloud.
+
+![](/img/github_actions.png)
+
+The test report can be downloaded from the Artifacts section.
