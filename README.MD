@@ -76,7 +76,7 @@ Much like a spider laying its web line by line, the Qa engineer produces e2e tes
 Each newly added test brings extended test coverage and peace of mind for the developers who can commit and deploy faster.
 The more tests there are in the regression test suite, the lower is the chance for an issue to find its way in the production environment.
 
-In the following example we will setup an end to end scenario and run it in the cloud aka Github Actions.
+In the following example we will setup an end to end scenario and run it in a CI environment aka Github Actions.
 For this we will need
 - a Github account(dont worry, it's free);
 - nodeJs https://nodejs.org/en/
@@ -98,6 +98,31 @@ You should see something like this.
 
 Now, let us see the test report, let's run `npx playwright show-report`.
 
-Next, lets modify the example test found in `/tests/example.spec.js`
+Next, lets modify the example test found in `/tests/example.spec.js` to look like this:
 
-![](/img/updatedSpec.png)
+```import { test, expect } from '@playwright/test';
+
+test('Quick Leaf privacy policy verification ', async ({ page }) => {
+  await page.goto('https://www.quickleaf.net/');
+
+  // Expect a title "to contain" a substring.
+  await expect(page).toHaveTitle('Quickleaf - Top Custom Web/Mobile Software Development');
+
+  // create a locator
+  const privacyPolicy = page.locator('text="Privacy policy"');
+
+  // Expect an attribute "to be strictly equal" to the value.
+  await expect(privacyPolicy).toHaveAttribute('href', 'https://www.quickleaf.net/privacy-policy/');
+
+  const [privacyPolicyPageHandle] = await Promise.all([
+    page.waitForEvent('popup'),
+    privacyPolicy.click()
+  ]);
+
+  // Expects the URL to contain intro.
+  await expect(privacyPolicyPageHandle).toHaveURL('https://www.quickleaf.net/privacy-policy/');
+});```
+
+
+### Continuous Integration
+Our tests need to be executed in a CI environment
