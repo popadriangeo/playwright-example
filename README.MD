@@ -121,7 +121,8 @@ test('Quick Leaf privacy policy verification ', async ({ page }) => {
 
   // Expects the URL to contain intro.
   await expect(privacyPolicyPageHandle).toHaveURL('https://www.quickleaf.net/privacy-policy/');
-});```
+});
+```
 
 
 ### Continuous Integration
