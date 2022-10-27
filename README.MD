@@ -193,7 +193,7 @@ test('Scenario: Quick Leaf Privacy Policy verification', async ({ page }) => {
 
 Now, let us execute the test again and, in order for us to check the test report, let's run `npx playwright show-report`, this will serve the report on localhost and should look like this:<br>
 
-![](/img/report.png)
+![](/img/report.PNG)
 
 Looks like our test was executed on Chromium, Firefox and Webkit environments, meaning we have coverage on all modern browsers:
   - Microsoft Edge
