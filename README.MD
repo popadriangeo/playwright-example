@@ -154,7 +154,7 @@ It's a testing tool used to develop e2e, api or even unit tests; however in this
 We will first install the latest version of Playwright by using the following command in the terminal:<br>
  `npm init playwright@latest`
  
-![](.img/playwright_init.PNG)
+![](/img/playwright_init.PNG)
 
 This will install all required dependencies including browsers.
 Let's execute the default tests to make sure everything is okay `npx playwright test`.
