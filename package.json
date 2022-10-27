@@ -3,11 +3,18 @@
   "version": "1.0.0",
   "description": "Each piece of software has bugs. We know this is true for every company, from Big Tech down to Quickleaf, we deal with nasty bugs in our code.",
   "main": "index.js",
-  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.27.1"
+    "@playwright/test": "^1.27.1",
+    "chai": "^4.3.6",
+    "supertest": "^6.3.1"
+  },
+  "dependencies": {
+    "mocha": "^10.1.0"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
