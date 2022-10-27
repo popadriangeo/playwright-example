@@ -28,7 +28,7 @@ The first stage of the testing process applied in the CI/CD method is the execut
 When executing an unit test, the codebase does not need to be deployed and external services are mocked, faked or stubbed.<br>
 The execution time for a set of unit tests is about 1 tenth the length of an e2e scenario, so Unit tests are less costly compared to Service Tests or UI tests.<br>
 Improving the speed of the test execution results in a faster CI/CD process.
-Having a layer of unit tests available is a safety net against introducing bugs into the codebase<br>, while allowing the developer the liberty of refactoring the code and assuring the refactored module still works as expected.
+Having a layer of unit tests available is a safety net against introducing bugs into the codebase,<br> while allowing the developer the liberty of refactoring the code and assuring the refactored module still works as expected.
 
 ### Disadvantages
 
@@ -71,7 +71,7 @@ describe('Weather Forecast Api', () => {
       // Assert 200 HTTP response code
       .expect(200).expect('Content-Type', /json/)
       .then((res) => {
-        // Verify data being returned to not be empty
+        // Verify data being returned is not empty
         console.log(res.body);
         assert.isNotEmpty(res.body);
       });
@@ -82,7 +82,7 @@ describe('Weather Forecast Api', () => {
 ![](/img/apitest.png)
 
 
-These types of tests need to be integrated into a CI/CD pipeline execution along unit tests and automated UI tests, which leads us too...
+These types of tests **can** and **need** to be integrated into a CI/CD pipeline execution along unit tests and automated UI tests, which leads us too...
 
 ## UI tests
 
@@ -102,7 +102,7 @@ Automated testing is more geared towards a faster paced development environment 
 
 ### Automated testing disadvantages
 
-An automated regression frameworks is in essence just an application which tests another application. It will have its own subset of problems and bugs, possibly linked to the application under test.
+An automated regression frameworks is in essence just a piece of software which tests another application. It will have its own subset of problems and bugs, possibly linked to the application under test.
 Did you changed your front-end, well then expect to refactor your UI tests aswell.
 Did the API schema for a certain service changed, then you will need to refactor your automated API/service tests aswell.
 Test maintenance is a well know problem and not to be taken lightly by the QA engineer.
@@ -129,7 +129,7 @@ Automated e2e testing means doing it in an automated manner.
 These tests scripts will mimic a user behavior and go through the web app just like a user would.
 From Login to Logout there's a myriad of scenarios the user would go through and a substantial number of ways it can go wrong. <br>Catching these issues on the branch level reduces future development costs, spent on fixes and refactorings.
 All of these would be covered by different tests, grouped in test suites, verifying different services or parts of the application.
-Much like a spider laying its web line by line, the Qa engineer produces end-to-end test suites.
+Much like a spider laying its web line by line, the Qa engineer produces end-to-end test suites. The scope of both is to catch bugs.
 Each newly added test scenario brings extended test coverage and peace of mind for the developers who can commit and deploy faster without fear of introducing unwanted issues into the codebase.
 The scope of this workload is to:
  - catch regression issues on the branch level or before reaching a production environment
@@ -145,7 +145,7 @@ For this we will need:
 We will use [Playwright](https://playwright.dev/) to setup our test framework.
 It's a testing tool used to develop e2e, api or even unit tests; however in this case we will concentrate on end to end testing.
 
-We will first install the latest version of Playwright using the following command in the terminal.
+We will first install the latest version of Playwright by using the following command in the terminal:<br>
  `npm init playwright@latest`
  
 ![](/img/playwright_init.png)
@@ -191,7 +191,7 @@ test('Scenario: Quick Leaf Privacy Policy verification', async ({ page }) => {
 
 ```
 
-Now, let us execute the test again and for us to check the test report, let's run `npx playwright show-report`, this will serve the report on localhost and should look like this:<br>
+Now, let us execute the test again and, in order for us to check the test report, let's run `npx playwright show-report`, this will serve the report on localhost and should look like this:<br>
 
 ![](/img/report.png)
 
@@ -201,9 +201,9 @@ Looks like our test was executed on Chromium, Firefox and Webkit environments, m
   - Safari
 
 
-### Continuous Integration
+### Executing tests in the deployment pipeline
 
-Our tests need to be executed in a CI environment, therefore we need to configure this part. 
+Our tests need to be executed in a Continous Integration or Continous Delivery environment, therefore we need to configure this part. 
 Github offers virtual machines which install packages and execute workflows similar to ours. This is what we will be achieving in the next steps.
 
 Lets first examine the `.github\workflows\playwright.yml` file. It should look like this.
@@ -278,4 +278,8 @@ In conclussion, the test automation pyramid is a good model when thinking about 
 Therefore if we want to have a succesfull development process, it should retain its Pyramid shape by:
 - keeping a large set of fast Unit tests as they are cheaper to set up and run
 - keeping a healthy set of integration tests
-- writing as few UI tests as possible, providing the verifications are done in the Unit tests or Integration test layers.<br> While having 50 e2e test scenarios would be no problem, if the number increases during the CI/CD process you're going to have a maintenance problem. Just imagine 1000+ tests to maintain at the UI level, not to mention the entire regression could last up to 10 hours of run-time.
+- writing as few UI tests as possible, provided the verifications are done in the Unit tests or Integration test layers.<br> While having 50 e2e test scenarios would be no problem, if the number increases during the CI/CD process you're going to have a maintenance problem. Just imagine 1000+ tests to maintain at the UI level, not to mention the entire regression could last up to 10 hours of run-time, blocking the integration/development process
+- lower-level tests allow you to narrow down errors and replicate them in an isolated way
+- if a bug is detected at higher level testing, it is time to write a corresponding verification at the Unit and Integration layer
+- avoid duplicate verifications in tests; redundand checks in tests just add dead weight, extend run-time and provide no value to the development team.
+- keep test suites fast
