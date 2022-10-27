@@ -79,10 +79,12 @@ describe('Weather Forecast Api', () => {
 });
 ```
 
+After test execution you will hopefully see something like this:<br>
+
 ![](/img/apitest.PNG)
 
 
-These types of tests **can** and **need** to be integrated into a CI/CD pipeline execution along unit tests and automated UI tests, which leads us too...
+These types of tests **can** and **need** to be integrated into a CI/CD deployment pipeline along unit tests and automated UI tests, which leads us too...
 
 ## UI tests
 
@@ -124,10 +126,14 @@ A mix of these two elements is perhaps...
 
 ## End to End Testing
 
-E2e testing means testing a deployed application via its user interface.<br>
+E2e testing means testing a deployed application via its user interface.
+
 Automated e2e testing means doing it in an automated manner.
-These tests scripts will mimic a user behavior and go through the web app just like a user would.
+[Selenium](https://www.selenium.dev/) or [Webdriver](https://www.w3.org/TR/webdriver/) allow us to do that.
+These tools allow testers and developers to write code that automate user agents, such as the browser.<br>
+These tests scripts will mimic a user behavior and go through the web app just like a real user would.
 From Login to Logout there's a myriad of scenarios the user would go through and a substantial number of ways it can go wrong. <br>Catching these issues on the branch level reduces future development costs, spent on fixes and refactorings.
+
 All of these would be covered by different tests, grouped in test suites, verifying different services or parts of the application.
 Much like a spider laying its web line by line, the Qa engineer produces end-to-end test suites. The scope of both is to catch bugs.
 Each newly added test scenario brings extended test coverage and peace of mind for the developers who can commit and deploy faster without fear of introducing unwanted issues into the codebase.
@@ -199,6 +205,7 @@ Looks like our test was executed on Chromium, Firefox and Webkit environments, m
   - Microsoft Edge
   - Chrome
   - Safari
+  - Firefox
 
 
 ### Executing tests in the deployment pipeline
@@ -280,6 +287,6 @@ Therefore if we want to have a succesfull development process, it should retain 
 - keeping a healthy set of integration tests
 - writing as few UI tests as possible, provided the verifications are done in the Unit tests or Integration test layers.<br> While having 50 e2e test scenarios would be no problem, if the number increases during the CI/CD process you're going to have a maintenance problem. Just imagine 1000+ tests to maintain at the UI level, not to mention the entire regression could last up to 10 hours of run-time, blocking the integration/development process
 - lower-level tests allow you to narrow down errors and replicate them in an isolated way
-- if a bug is detected at higher level testing, it is time to write a corresponding verification at the Unit and Integration layer
+- if a bug is detected at higher level testing, it is time to write a corresponding test at the Unit and Integration layer
 - avoid duplicate verifications in tests; redundand checks in tests just add dead weight, extend run-time and provide no value to the development team.
 - keep test suites fast
