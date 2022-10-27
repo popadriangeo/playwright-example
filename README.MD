@@ -1,9 +1,9 @@
 # How do we approach the testing process at Quickleaf?
 
 Each piece of software has bugs. We know this is true for every company, from Big Tech down to Quickleaf, we deal with nasty bugs in our code.
+Ranging from security issues resulting in server breaches, performance issues, or merely some UI typos.
 
-Ranging from security issues resulting in server breaches, performance issues, or merely some UI typos
-These issues will come to light, eventually, being discovered by either the QA or the end user.<br> We do not want the latter to happen, therefore the question is how do we approach the complex testing process at Quickleaf?
+Eventually, these issues will come to light, being discovered by either the QA or the end user.<br> We do not want the latter to happen, therefore the question is how do we approach the complex testing process at Quickleaf?
 
 Maybe you've heard of the Test Pyramid. It's a concept related to Agile development.
 
@@ -26,7 +26,7 @@ The first stage of the testing process applied in the CI/CD method is the execut
 ### Advantages
 
 When executing an unit test, the codebase does not need to be deployed and external services are mocked, faked or stubbed.<br>
-The execution time for a set of unit tests is about 1 tenth the length of an e2e scenario, so Unit tests are less costly compared to Service Tests or UI tests.<br>
+The execution time for a set of unit tests is considerably lower than the execution time for an end-to-end scenario, so Unit tests are less costly compared to Service Tests or UI tests.<br>
 Improving the speed of the test execution results in a faster CI/CD process.
 Having a layer of unit tests available is a safety net against introducing bugs into the codebase,<br> while allowing the developer the liberty of refactoring the code and assuring the refactored module still works as expected.
 
@@ -140,7 +140,7 @@ Each newly added test scenario brings extended test coverage and peace of mind f
 The scope of this workload is to:
  - catch regression issues on the branch level or before reaching a production environment
  - reduce costs associated with manual testing
- - speed up the CI/CD process
+ - speed up the CI/CD process, as automated regression is faster than manual regression
 
 In the following example we will setup an end to end scenario and run it in a CI environment, [Github Actions](https://github.com/features/actions).
 For this we will need:
