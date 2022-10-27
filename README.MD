@@ -79,7 +79,7 @@ describe('Weather Forecast Api', () => {
 });
 ```
 
-![](/img/apitest.png)
+![](/img/apitest.PNG)
 
 
 These types of tests **can** and **need** to be integrated into a CI/CD pipeline execution along unit tests and automated UI tests, which leads us too...
@@ -253,7 +253,7 @@ Next, let's commit and push our code towards our Github repository and check the
 The workflow will be picked up by a Github hosted runner and our workflow will be executed in the cloud.
 
 
-![](/img/github_actions.png)
+![](/img/github_actions.PNG)
 
 While Using Github Actions, keep in mind that storage and minutes used for these jobs could be costly, if not managed properly.
 Make sure to always keep your tests as efficient as possible and remember to add a specific test timeout, which would interupt the job if the test would hang for too long.
