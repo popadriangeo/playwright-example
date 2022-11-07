@@ -99,12 +99,12 @@ These tests can be executed by a manual tester or through an automated regressio
 
 ### Automated testing advantages
 
-Automated tests bring speed into the ci/cd development process. A developer can have his branch tested in a fraction of the time needed for a manual tester to do it. The man-hour costs associated with QA will drop over time after the successfull implementation of an automated regression framework.
+Automated tests bring speed into the ci/cd development process. A developer can have his branch tested in a fraction of the time needed for a manual tester to do it. The man-hour costs associated with QA will drop over time after the successful implementation of an automated regression framework.
 Automated testing is more geared towards a faster-paced development environment with shorter sprints.
 
 ### Automated testing disadvantages
 
-An automated regression framework is in essence just a piece of software that tests another application. It will have its  subset of problems and bugs, possibly linked to the application under test.
+An automated regression framework is in essence just a piece of software that tests another application. It will have its subset of problems and bugs, possibly linked to the application under test.
 Did you change your front end, well then expect to refactor your UI tests as well.
 Did the API schema for certain service changes, then you will need to refactor your automated API/service tests as well.
 Test maintenance is a well know problem and not to be taken lightly by the QA engineer.
@@ -131,7 +131,7 @@ E2e testing means testing a deployed application via its user interface.
 Automated e2e testing means doing it in an automated manner.
 [Selenium](https://www.selenium.dev/) or [Webdriver](https://www.w3.org/TR/webdriver/) allow us to do that.
 These tools allow testers and developers to write code that automates user agents, such as the browser.<br>
-These test scripts will mimic user's behavior and go through the web app just like a real user would.
+These test scripts will mimic the user's behavior and go through the web app just like a real user would.
 From logging in to logging out, there's a myriad of scenarios the user would go through and a substantial number of ways it can go wrong. <br>Catching these issues on the branch level reduces future development costs, spent on fixes and refactorings.
 
 All of these would be covered by different tests, grouped in test suites, verifying different services or parts of the application.
@@ -163,7 +163,7 @@ You should see something like this.
 ![](/img/playwright_test.PNG)
 
 Next, let's modify the example test found in `/tests/example.spec.js`.
-We will add our own scenario.
+We will add our scenario.
 A pretty straightforward example, we want to access our page, click the privacy policy button, and verify the user can accept it.
 
 ```import { test, expect } from '@playwright/test';
@@ -282,7 +282,7 @@ In conclusion, the test automation pyramid is a good model when thinking about t
   Pyramid (good)                   Ice cream cone (bad)
 ```
 
-Therefore if we want to have a successfull development process, it should retain its Pyramid shape by:
+Therefore if we want to have a successful development process, it should retain its Pyramid shape by:
 - keeping a large set of fast Unit tests as they are cheaper to set up and run
 - keeping a healthy set of integration tests
 - writing as few UI tests as possible, provided the verifications are done in the Unit tests or Integration test layers.<br> While having 50 e2e test scenarios would be no problem if the number increases during the CI/CD process you're going to have a maintenance problem. Just imagine 1000+ tests to maintain at the UI level, not to mention the entire regression could last up to 10 hours of run-time, blocking the integration/development process
